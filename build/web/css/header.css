@@ -1,0 +1,30 @@
+.navbar {
+  background: rgba(128.76, 146.85, 241.81, 1);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it's above other elements */
+  background: rgba(128.76, 146.85, 241.81, 1);
+}
+
+.logo{
+    vertical-align: middle;
+    border-style: none;
+    width: 50px;
+}
+
+.search-btn {
+  top: 20px;
+  left: 765px;
+  width: 92px;
+  height: 38px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 1);
+}

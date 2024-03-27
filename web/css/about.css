@@ -1,0 +1,55 @@
+/* about-us.css */
+body {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* Centering the About Us section */
+.container.text-center {
+  margin-top: 50px;
+}
+
+/* Styling for Our Team section */
+.container.mt-5 {
+  text-align: center;
+}
+
+.container.mt-5 h2 {
+  padding-top: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Card styling */
+.card {
+  width: 18rem;
+  margin: 20px;
+}
+
+.card img {
+  background: black;
+  height: 200px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.card-body {
+  text-align: center;
+  background-color: rgba(193, 199, 233, 0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
+  }
+}
+@media (max-width: 425px) {
+  .card {
+    padding-left: 0px;
+    margin-left: 0px;
+  }
+}

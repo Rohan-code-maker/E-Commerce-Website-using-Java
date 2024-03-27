@@ -1,0 +1,9 @@
+.category-img {
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.category-card {
+  margin-bottom: 20px; 
+}

@@ -1,0 +1,71 @@
+#category-header {
+  padding-top: 10px;
+  font-size: 40px;
+  font-weight: bold;
+}
+.section {
+  min-height: 100vh;
+}
+.product-card {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 576px) {
+  .product-card {
+    flex: 0 0 50%; /* Show 2 cards per row on medium screens */
+  }
+}
+
+@media (min-width: 992px) {
+  .product-card {
+    flex: 0 0 25%; /* Show 4 cards per row on large screens */
+  }
+}
+
+.container {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.product-img {
+  width: 100%;
+  height: 200px; /* Set a fixed height for all images */
+  object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 7px;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.btn-more-details,
+.btn-add-to-cart {
+  border-radius: 9px;
+  width: 80%;
+}
+
+.btn-more-details {
+  background-color: #8193f2;
+}
+
+.btn-add-to-cart {
+  background-color: #5f22e1;
+}
+.btn {
+  margin-bottom: 5px;
+}
+
+/* Adjustments for footer height in large screens
+@media (min-width: 1024px) {
+  #category-header {
+    font-size: 40px;
+    margin-top: -10px;
+    padding: 10px;
+    font-weight: bold;
+  } */
+

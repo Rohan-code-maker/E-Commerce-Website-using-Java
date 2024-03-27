@@ -1,0 +1,45 @@
+footer {
+  background: rgba(12, 12, 12, 0.86);
+  color: white;
+  padding: 5px 0;
+  width: 100%;
+  margin: 0;
+}
+
+footer p {
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+footer a {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0 0.3em 0 0.3em;
+  color: #ffffff;
+}
+@media (max-width: 55em) {
+  footer p {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  footer a {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 0.2em 0 0.2em;
+    margin: 0;
+  }
+}
+@media (max-width: 35em) {
+  footer p {
+    font-size: 20px;
+  }
+  footer a {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 0.3em 0 0.3em;
+  }
+}
