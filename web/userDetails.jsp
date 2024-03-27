@@ -83,7 +83,6 @@
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
                         <th scope="col">Sport</th>
-                        <th scope="col">Last Login</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,10 +100,6 @@
                             String tname = c.getName();
                             if(tname.equals("date")){
                             value = c.getValue();
-                        %>
-                        <td><%= result.getString("sport") %></td>
-
-                        <%
                             }
                             }
                         %>
