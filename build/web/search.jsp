@@ -1,5 +1,10 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+%>
 
 <%
     int id = Integer.parseInt(request.getParameter("id"));
@@ -80,11 +85,12 @@ try {
                 </div>
                 <div class="details">
                     <h2><%= result.getString("name")%></h2>
-                    <p><%= result.getString("price")%></p>
+                    <p>Price: $<%= result.getString("price")%></p>
+                    <p>Fabric: <%= result.getString("fabric")%></p>
+                    <p>Colors: <%= result.getString("color")%></p>
+                    <p>Sizes: <%= result.getString("size")%></p>
                     <p><%= result.getString("description")%></p>
-                    <p>
-                        <%= result.getString("details")%>
-                    </p>
+
                     <form action="AddToCartServlet" method="post">
                         <input type="hidden" name="productId" value="<%=result.getInt("id")%>">
                         <input type="hidden" name="image" value="<%=result.getString("image")%>">
@@ -92,7 +98,9 @@ try {
                         <input type="hidden" name="description" value="<%=result.getString("description")%>">
                         <input type="hidden" name="price" value="<%=result.getString("price")%>">
                         <input type="hidden" name="category" value="<%=result.getString("category")%>">
-                        <input type="hidden" name="details" value="<%=result.getString("details")%>">
+                        <input type="hidden" name="fabric" value="<%=result.getString("fabric")%>">
+                        <input type="hidden" name="color" value="<%=result.getString("color")%>">
+                        <input type="hidden" name="size" value="<%=result.getString("size")%>">
                         <input type="submit" class="btn btn-success btn-add-to-cart" value="Add to Cart">
                     </form>
                 </div>

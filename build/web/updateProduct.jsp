@@ -1,5 +1,13 @@
 <%@ page import="java.sql.*, java.io.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+  if(session.getAttribute("name") == null){
+  response.sendRedirect("index.jsp");
+    }
+%>
 
 <%
 if(request.getParameter("submit")!=null)
@@ -119,7 +127,7 @@ try {
                 font-weight: bold;
             }
 
-/*            input,*/
+            /*            input,*/
             textarea {
                 width: 100%;
                 padding: 8px;
@@ -190,6 +198,7 @@ try {
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" required><%= result.getString("description") %></textarea>
 
+                <label for="category">Category:</label>
                 <select name="category">
                     <option><%= result.getString("category") %></option>
                     <option>Men</option>
@@ -199,10 +208,16 @@ try {
 
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" value="<%= result.getInt("price") %>" required>
-                
-                <label for="details">More Details:</label>
-                <textarea id="details" name="details" required><%= result.getString("details") %></textarea>
 
+                <label for="fabric">Fabric:</label>
+                <input type="text" id="fabric" name="fabric" value="<%= result.getString("fabric") %>" required>
+                
+                <label for="color">Colour:</label>
+                <input type="text" id="color" name="color" value="<%= result.getString("color") %>" required>
+                
+                <label for="size">Size:</label>
+                <input type="text" id="size" name="size" value="<%= result.getString("size") %>" required>
+                
                 <label for="image">Image:</label>
                 <input type="file" id="image" name="image" value="<%= result.getString("image") %>">
                 <% } %>

@@ -1,5 +1,14 @@
 <%@ page import="java.sql.*, java.io.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+  if(session.getAttribute("name") == null){
+  response.sendRedirect("index.jsp");
+    }
+%>
+
 
 <%
     if(request.getParameter("submit")!=null)
@@ -9,7 +18,9 @@
     String description = request.getParameter("description");
     String category = request.getParameter("category");
     int price = Integer.parseInt(request.getParameter("price"));
-    String details = request.getParameter("details");
+    String fabric = request.getParameter("fabric");
+    String color = request.getParameter("color");
+    String size = request.getParameter("size");
     String image = request.getParameter("image");
     
     // JDBC variables
@@ -25,7 +36,7 @@
         connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
         // SQL query
-        String sql = "INSERT INTO products (name, description,category, price,details, image) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, description,category, price,fabric,color,size, image) VALUES (?, ?, ?, ?, ?, ?,?,?)";
         preparedStatement = connection.prepareStatement(sql);
 
         // Set parameters
@@ -33,8 +44,10 @@
         preparedStatement.setString(2, description);
         preparedStatement.setString(3, category);
         preparedStatement.setInt(4, price);
-        preparedStatement.setString(5, details);
-        preparedStatement.setString(6, image);
+        preparedStatement.setString(5, fabric);
+        preparedStatement.setString(6, color);
+        preparedStatement.setString(7, size);
+        preparedStatement.setString(8, image);
 
         // Execute the query
         int i = preparedStatement.executeUpdate();
@@ -174,7 +187,7 @@
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" required></textarea>
 
-                <label for="description">Description:</label>
+                <label for="category">Category:</label>
                 <select name="category">
                     <option>Select</option>
                     <option>Men</option>
@@ -185,8 +198,14 @@
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" required>
                 
-                <label for="details">More Details:</label>
-                <textarea id="details" name="details" required></textarea>
+                <label for="fabric">Fabric:</label>
+                <input type="text" id="fabric" name="fabric" required>
+                
+                <label for="color">Colour:</label>
+                <input type="text" id="color" name="color" required>
+                
+                <label for="size">Size:</label>
+                <input type="text" id="size" name="size" required>
 
                 <label for="image">Image:</label>
                 <input type="file" id="image" name="image" required>

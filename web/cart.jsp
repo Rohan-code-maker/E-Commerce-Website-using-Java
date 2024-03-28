@@ -2,6 +2,12 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+%>
+
+<%
     Connection conSelect = null;
     PreparedStatement selectStatement = null;
     ResultSet result = null;
@@ -113,6 +119,7 @@
                             <p id="product-name">Name: <%= result.getString("product_name") %></p>
                             <p id="product-price">Price: <%= result.getString("product_price") %></p>
                             <a href="deleteFromCart.jsp?id=<%= result.getInt("id") %>"><button class="btn btn-danger">Delete</button></a>
+                            <a href="product-details.jsp?id=<%= result.getInt("id") %>"><button class="btn btn-primary">Details</button></a>
                         </div>
                     </div>
                     <% }

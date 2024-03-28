@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+%>
 
 <%
     Connection conSelect = null;
@@ -14,6 +19,7 @@
     } catch (Exception e) {
         e.printStackTrace();
     }
+    
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,8 +91,9 @@
                                  alt="Product Image" class="card-img-top product-img"/>
                             <div class="card-body">
                                 <h5 class="card-title"><%= result.getString("name") %></h5>
-                                <p class="card-text"><%= result.getString("description") %></p>
-                                <p class="card-text"><%= result.getString("price") %></p>
+                                <p class="card-text">For: <%= result.getString("category") %></p>
+                                <p class="card-text">Fabric: <%= result.getString("fabric") %></p>
+                                <p class="card-text">Colors: <%= result.getString("color") %></p>
                                 <a href="product-details.jsp?id=<%= result.getInt("id")%>" class="btn btn-info btn-more-details">
                                     More Details
                                 </a>
@@ -97,7 +104,9 @@
                                     <input type="hidden" name="description" value="<%=result.getString("description")%>">
                                     <input type="hidden" name="price" value="<%=result.getString("price")%>">
                                     <input type="hidden" name="category" value="<%=result.getString("category")%>">
-                                    <input type="hidden" name="details" value="<%=result.getString("details")%>">
+                                    <input type="hidden" name="fabric" value="<%=result.getString("fabric")%>">
+                                    <input type="hidden" name="color" value="<%=result.getString("color")%>">
+                                    <input type="hidden" name="size" value="<%=result.getString("size")%>">
                                     <input type="submit" class="btn btn-success btn-add-to-cart" value="Add to Cart">
                                 </form>
                             </div>
@@ -108,7 +117,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Footer -->
         <footer class="footer mt-auto">
             <div class="container-fluid text-center">

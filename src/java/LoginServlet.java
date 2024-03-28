@@ -23,6 +23,12 @@ public class LoginServlet extends HttpServlet {
         PreparedStatement pst = null;
         HttpSession sessionObj = request.getSession();
         PrintWriter out = response.getWriter();
+        
+        if(sessionObj.getAttribute("name") == null){
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+            response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+            response.setDateHeader("Expires", 0); // Proxies
+        }
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

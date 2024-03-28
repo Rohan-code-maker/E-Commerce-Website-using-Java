@@ -1,6 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*,jakarta.servlet.http.*" %>
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+  if(session.getAttribute("name") == null){
+  response.sendRedirect("index.jsp");
+    }
+%>
 
 <%
     Connection conSelect = null;
@@ -83,6 +91,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Address</th>
                         <th scope="col">Sport</th>
+                        <th scope="col">Last Login</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,6 +112,7 @@
                             }
                             }
                         %>
+                        <td><%= result.getString("created_at") %></td>
                     </tr>
                     <% } 
              } %>

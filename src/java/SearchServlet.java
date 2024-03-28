@@ -1,9 +1,11 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,17 +15,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SearchServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String name = request.getParameter("search");
-        
+
         // JDBC variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        HttpSession sessionObj = request.getSession();
         PrintWriter out = response.getWriter();
         ResultSet result = null;
-        
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String jdbcUrl = "jdbc:mysql://localhost:3306/mysql";
@@ -36,8 +40,13 @@ public class SearchServlet extends HttpServlet {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, "%" + name + "%"); // Set parameter properly
             result = preparedStatement.executeQuery();
-            if(result.next()){ // Use result.next() to check if there's any result
-                response.sendRedirect("search.jsp?id="+result.getInt("id"));
+            if (result.next()) { // Use result.next() to check if there's any result
+                if ("Admin".equals(sessionObj.getAttribute("name"))) {
+                    response.sendRedirect("adminSearch.jsp?id=" + result.getInt("id"));
+                } else {
+                    response.sendRedirect("search.jsp?id=" + result.getInt("id"));
+                }
+
             } else {
                 response.sendRedirect("pageNotFound.jsp");
             }

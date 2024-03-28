@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public class AddToCartServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,7 +26,9 @@ public class AddToCartServlet extends HttpServlet {
         String product_desc = request.getParameter("description");
         int product_price = Integer.parseInt(request.getParameter("price"));
         String product_category = request.getParameter("category");
-        String product_details = request.getParameter("details");
+        String fabric = request.getParameter("fabric");
+        String color = request.getParameter("color");
+        String size = request.getParameter("size");
         String name = (String) session.getAttribute("name");
 
         // JDBC variables
@@ -41,7 +45,7 @@ public class AddToCartServlet extends HttpServlet {
             connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
             // SQL query
-            String sql = "INSERT INTO cart (product_id, product_name, product_desc, product_price, product_category, product_details, name, image, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)";
+            String sql = "INSERT INTO cart (product_id, product_name, product_desc, product_price, product_category, fabric,color,size, name, image, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?, 1)";
             preparedStatement = connection.prepareStatement(sql);
 
             // Set parameters
@@ -50,13 +54,15 @@ public class AddToCartServlet extends HttpServlet {
             preparedStatement.setString(3, product_desc);
             preparedStatement.setInt(4, product_price);
             preparedStatement.setString(5, product_category);
-            preparedStatement.setString(6, product_details);
-            preparedStatement.setString(7, name);
-            preparedStatement.setString(8, image);
+            preparedStatement.setString(6, fabric);
+            preparedStatement.setString(7, color);
+            preparedStatement.setString(8, size);
+            preparedStatement.setString(9, name);
+            preparedStatement.setString(10, image);
 
             // Execute the query
             int i = preparedStatement.executeUpdate();
-            if(i > 0) {
+            if (i > 0) {
                 response.sendRedirect("cart.jsp");
             } else {
                 out.println("Data Not Added");
@@ -67,10 +73,10 @@ public class AddToCartServlet extends HttpServlet {
         } finally {
             // Close PreparedStatement and Connection
             try {
-                if(preparedStatement != null) {
+                if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-                if(connection != null) {
+                if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {

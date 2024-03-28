@@ -1,6 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+  if(session.getAttribute("name") == null){
+  response.sendRedirect("index.jsp");
+    }
+%>
 
 <%
     Connection conSelect = null;
@@ -86,10 +94,13 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Description</th>
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Fabric</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Sizes</th>
                         <th scope="col">Image</th>
+                        <th scope="col">Created At</th>
                         <th scope="col">Action</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -99,10 +110,13 @@
                  while (result.next()) { %>
                     <tr>
                         <td><%= result.getString("name") %></td>
-                        <td><%= result.getString("description") %></td>
                         <td><%= result.getString("category") %></td>
                         <td><%= result.getString("price") %></td>
+                        <td><%= result.getString("fabric") %></td>
+                        <td><%= result.getString("color") %></td>
+                        <td><%= result.getString("size") %></td>
                         <td><img class="product-img" src="assets/<%= result.getString("image")%>" alt="Photo Relaoding" /></td>
+                        <td><%= result.getString("created_at") %></td>
                         <td><a href="updateProduct.jsp?id=<%= result.getInt("id") %>"><button class="btn btn-primary">Update</button></a></td>
                         <td><a href="deleteProduct.jsp?id=<%= result.getInt("id") %>"><button class="btn btn-danger">Delete</button></a></td>
                     </tr>

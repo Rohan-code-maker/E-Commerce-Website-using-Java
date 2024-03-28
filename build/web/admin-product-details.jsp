@@ -3,6 +3,16 @@
 <%@ page import="java.util.*" %>
 
 <%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+  response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+  response.setDateHeader("Expires", 0); // Proxies
+  if(session.getAttribute("name") == null){
+  response.sendRedirect("index.jsp");
+    }
+%>
+
+
+<%
     int id = Integer.parseInt(request.getParameter("id"));
     Connection conSelect = null;
     PreparedStatement selectStatement = null;
@@ -84,11 +94,11 @@
                 </div>
                 <div class="details">
                     <h2><%= result.getString("name")%></h2>
-                    <p><%= result.getString("price")%></p>
+                    <p>Price: $<%= result.getString("price")%></p>
+                    <p>Fabric: <%= result.getString("fabric")%></p>
+                    <p>Colors: <%= result.getString("color")%></p>
+                    <p>Sizes: <%= result.getString("size")%></p>
                     <p><%= result.getString("description")%></p>
-                    <p>
-                        <%= result.getString("details")%>
-                    </p>
                 </div>
             </div>
             <% }
