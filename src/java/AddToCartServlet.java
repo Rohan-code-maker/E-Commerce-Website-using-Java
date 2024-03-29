@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,6 +35,7 @@ public class AddToCartServlet extends HttpServlet {
         // JDBC variables
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        ResultSet result = null;
         PrintWriter out = response.getWriter();
 
         try {
@@ -44,21 +46,28 @@ public class AddToCartServlet extends HttpServlet {
             String dbPassword = "admin";
             connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
 
-            // SQL query
-            String sql = "INSERT INTO cart (product_id, product_name, product_desc, product_price, product_category, fabric,color,size, name, image, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?, 1)";
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement("SELECT * FROM cart WHERE product_id = ?");
+            preparedStatement.setInt(1, productId); // Replace productId with actual product ID
+            result = preparedStatement.executeQuery();
+            if (!result.next()) {
+                // SQL query
+                String sql = "INSERT INTO cart (product_id, product_name, product_desc, product_price, product_category, fabric,color,size, name, image, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?, 1)";
+                preparedStatement = connection.prepareStatement(sql);
 
-            // Set parameters
-            preparedStatement.setInt(1, productId);
-            preparedStatement.setString(2, product_name);
-            preparedStatement.setString(3, product_desc);
-            preparedStatement.setInt(4, product_price);
-            preparedStatement.setString(5, product_category);
-            preparedStatement.setString(6, fabric);
-            preparedStatement.setString(7, color);
-            preparedStatement.setString(8, size);
-            preparedStatement.setString(9, name);
-            preparedStatement.setString(10, image);
+                // Set parameters
+                preparedStatement.setInt(1, productId);
+                preparedStatement.setString(2, product_name);
+                preparedStatement.setString(3, product_desc);
+                preparedStatement.setInt(4, product_price);
+                preparedStatement.setString(5, product_category);
+                preparedStatement.setString(6, fabric);
+                preparedStatement.setString(7, color);
+                preparedStatement.setString(8, size);
+                preparedStatement.setString(9, name);
+                preparedStatement.setString(10, image);
+            }else{
+                out.println("You have already Added the item in the cart..");
+            }
 
             // Execute the query
             int i = preparedStatement.executeUpdate();
@@ -68,7 +77,7 @@ public class AddToCartServlet extends HttpServlet {
                 out.println("Data Not Added");
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            out.println("You have already Added the item in the cart..");
+            out.println("Something Error");
             Logger.getLogger(AddToCartServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Close PreparedStatement and Connection

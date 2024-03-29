@@ -5,7 +5,7 @@
   response.setHeader("Pragma", "no-cache"); // HTTP 1.0
   response.setDateHeader("Expires", 0); // Proxies
   if(session.getAttribute("name") == null){
-  response.sendRedirect("index.jsp");
+  response.sendRedirect("login.jsp");
     }
 %>
 
@@ -60,9 +60,9 @@ try {
                     </form>
 
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a href="index.jsp" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="adminIndex.jsp" class="nav-link">Home</a></li>
                         <li class="nav-item">
-                            <a href="category-three-cards.jsp" class="nav-link">Categories</a>
+                            <a href="adminCategories.jsp" class="nav-link">Categories</a>
                         </li>
                             <% if (session.getAttribute("name") != null) { %>
                         <li class="nav-item nav-link"><a href="logout.jsp"><%= session.getAttribute("name") %></a></li>
@@ -87,11 +87,11 @@ try {
                 </div>
                 <div class="details">
                     <h2><%= result.getString("name")%></h2>
-                    <p><%= result.getString("price")%></p>
+                    <p>Price: $<%= result.getString("price")%></p>
+                    <p>Fabric: <%= result.getString("fabric")%></p>
+                    <p>Colors: <%= result.getString("color")%></p>
+                    <p>Sizes: <%= result.getString("size")%></p>
                     <p><%= result.getString("description")%></p>
-                    <p>
-                        <%= result.getString("details")%>
-                    </p>
                 </div>
             </div>
             <% }

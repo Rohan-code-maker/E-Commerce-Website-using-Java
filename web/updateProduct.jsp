@@ -5,7 +5,7 @@
   response.setHeader("Pragma", "no-cache"); // HTTP 1.0
   response.setDateHeader("Expires", 0); // Proxies
   if(session.getAttribute("name") == null){
-  response.sendRedirect("index.jsp");
+  response.sendRedirect("login.jsp");
     }
 %>
 

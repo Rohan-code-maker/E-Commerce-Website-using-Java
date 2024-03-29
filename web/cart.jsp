@@ -14,8 +14,12 @@
     String name = (String) session.getAttribute("name");
     try {
         conSelect = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "admin");
+        if(session.getAttribute("name") == null){
+        selectStatement = conSelect.prepareStatement("select * from cart where name is null");
+    }else{
         selectStatement = conSelect.prepareStatement("select * from cart where name = ?");
         selectStatement.setString(1,name);
+    }
         result = selectStatement.executeQuery();
     } catch (Exception e) {
         e.printStackTrace();
@@ -48,7 +52,7 @@
             }
             .product-card{
                 overflow-y: auto;
-                max-height: 400px; 
+                max-height: 400px;
             }
             .cart-summary{
                 /*height: 450px;*/
@@ -119,7 +123,7 @@
                             <p id="product-name">Name: <%= result.getString("product_name") %></p>
                             <p id="product-price">Price: <%= result.getString("product_price") %></p>
                             <a href="deleteFromCart.jsp?id=<%= result.getInt("id") %>"><button class="btn btn-danger">Delete</button></a>
-                            <a href="product-details.jsp?id=<%= result.getInt("id") %>"><button class="btn btn-primary">Details</button></a>
+                            <a href="product-details.jsp?id=<%= result.getInt("product_id") %>"><button class="btn btn-primary">Details</button></a>
                         </div>
                     </div>
                     <% }
