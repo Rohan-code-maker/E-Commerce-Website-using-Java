@@ -108,6 +108,10 @@
                         <input type="hidden" name="size" value="<%=result.getString("size")%>">
                         <input type="submit" class="btn btn-success btn-add-to-cart" value="Add to Cart">
                     </form>
+                        <%if(session.getAttribute("name") != null){ %>
+                        <button class="btn btn-danger"><a href="ticket.jsp?id=<%= result.getInt("id") %>">Buy Product</a></button>    
+              <%  }
+                %>
                 </div>
             </div>
             <% }

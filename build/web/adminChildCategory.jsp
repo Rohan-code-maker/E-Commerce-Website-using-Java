@@ -95,7 +95,7 @@
                                 <p class="card-text">For: <%= result.getString("category") %></p>
                                 <p class="card-text">Fabric: <%= result.getString("fabric") %></p>
                                 <p class="card-text">Colors: <%= result.getString("color") %></p>
-                                <a href="product-details.jsp?id=<%= result.getInt("id")%>" class="btn btn-info btn-more-details">
+                                <a href="admin-product-details.jsp?id=<%= result.getInt("id")%>" class="btn btn-info btn-more-details">
                                     More Details
                                 </a>
                             </div>

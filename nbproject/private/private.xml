@@ -4,18 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/R:/NetBeans/Project/web/adminAbout.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/addProduct.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/adminCategories.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/admin-product-details.jsp</file>
+            <file>file:/R:/NetBeans/Project/web/deleteProduct.jsp</file>
+            <file>file:/R:/NetBeans/Project/web/viewProduct.jsp</file>
+            <file>file:/R:/NetBeans/Project/web/about.jsp</file>
+            <file>file:/R:/NetBeans/Project/web/index.jsp</file>
             <file>file:/R:/NetBeans/Project/web/adminMenCategory.jsp</file>
             <file>file:/R:/NetBeans/Project/web/adminWomenCategory.jsp</file>
             <file>file:/R:/NetBeans/Project/web/adminChildCategory.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/updateProduct.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/userDetails.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/adminIndex.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/viewProduct.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/adminSearch.jsp</file>
-            <file>file:/R:/NetBeans/Project/web/adminContact.jsp</file>
+            <file>file:/R:/NetBeans/Project/web/ticket.jsp</file>
+            <file>file:/R:/NetBeans/Project/web/css/category.css</file>
         </group>
     </open-files>
 </project-private>

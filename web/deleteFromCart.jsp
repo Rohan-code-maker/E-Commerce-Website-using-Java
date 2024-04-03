@@ -12,6 +12,7 @@
     if (idParameterStr != null && !idParameterStr.isEmpty()) {
         try {
             int idParameter = Integer.parseInt(idParameterStr);
+            String name = (String) session.getAttribute("name");
 
             Connection con = null;
             PreparedStatement deleteStatement = null;
@@ -19,9 +20,15 @@
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql", "root", "admin");
-
-                deleteStatement = con.prepareStatement("DELETE FROM cart WHERE id = ?");
+                
+                if(session.getAttribute("name") == null){
+                deleteStatement = con.prepareStatement("DELETE FROM cart WHERE name is null and id = ?");
                 deleteStatement.setInt(1, idParameter);
+    }else{
+        deleteStatement = con.prepareStatement("DELETE FROM cart WHERE name = ? and id = ?");
+                deleteStatement.setString(1,name);
+                deleteStatement.setInt(2, idParameter);
+    }
                 int rowsAffected = deleteStatement.executeUpdate();
 
                 if (rowsAffected > 0) {

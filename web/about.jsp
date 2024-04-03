@@ -78,7 +78,7 @@
                 <!-- Team Member 1 -->
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card">
-                        <img src="assets/rohan.jpeg" />
+                        <img src="assets/Rohan.jpg" />
                         <div class="card-body">
                             <h5 class="card-title">Rohan Kumar Gupta</h5>
                             <p class="card-text">Student</p>
@@ -89,7 +89,7 @@
                 <!-- Team Member 2 -->
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card">
-                        <img src="assets/shreema.png" />
+                        <img src="assets/shreema.jpg" />
                         <div class="card-body">
                             <h5 class="card-title">Shreema Dey Purba</h5>
                             <p class="card-text">Student</p>
